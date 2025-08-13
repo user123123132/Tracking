@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tracking</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      transform: scale(1.2);
+    }
+    .checkbox-container {
+      display: grid;
+      grid-template-columns: repeat(5, 3.5rem);
+      background-color: lightblue;
+      padding: 1.1rem;
+      gap: 0.5rem;
+    }
+
+    .checkbox-container div {
+      background-color: gray;
+      display: flex;
+    }
+
+    .checkboxes {
+      
+    }
+
+  </style>
+  <body>
+    <h1>Day : 11 / 08 / 2025</h1>
+    <div class="checkbox-container"></div>
+    <script>
+      let CheckContainer = document.querySelector(".checkbox-container");
+
+      function creatingDays() {
+        for (let i = 1; i <= 30; i++) {
+          let newDay = document.createElement("div");
+          let saved = localStorage.getItem(`day${i}`) === "true";
+          newDay.innerHTML = `<h4>day${i}</h4>
+            <input type="checkbox" ${saved ? "checked" : ""} class="checkboxes" />`;
+
+          let checkbox = newDay.querySelector("input");
+          checkbox.addEventListener("change", () => {
+            localStorage.setItem(`day${i}`, checkbox.checked);
+          });
+
+          CheckContainer.appendChild(newDay);
+        }
+      }
+
+      creatingDays();
+    </script>
+  </body>
+</html>
